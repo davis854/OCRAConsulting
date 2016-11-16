@@ -1,13 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <style>
-        .navbar-collapse {
-            background-color: green;
-            font-family:'Times New Roman', Times, serif;
-            font-size: medium;
-        }       
-    </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - ORCA Consulting</title>
@@ -16,9 +9,27 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <style>
+        .navbar-inverse {
+            background-color: white;
+            padding: 0;
+        }
+        .navbar-default {
+            background-color: green;
+            padding-top: 0;
+        }
+    </style>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
             <div class="navbar-header">
+                <a class="navbar-brand" href="#"></a>
+            </div>
+        </div>
+    </nav>
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <img src="http://www.marshall.edu/home/img/main/mu_logo_blk.png" style="width: 150px; height: 50px;"/>
+           <!-- <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                 </button>
@@ -27,17 +38,32 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("About Marshall", "About", "Home")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")//mmmm
+                <style>
+                    .li {
+                        margin-right: auto;
+                    }
+                </style>-->
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <h1>Welcome to the Marshall University Experts Page</h1>
+    <img src="http://www.marshall.edu/leedgreen/files/WAEC-1.jpg" style="width: 750px; height: 500px;" />
+    <style>
+        body {
+            background-color: white;
+        }
+        img {
+            margin-right: auto;
+        }
+    </style>
+    <!-- <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
-    </div>
+    </div> -->
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
