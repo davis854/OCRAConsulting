@@ -78,7 +78,7 @@ namespace ORCA2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ExpertID,FirstName,LastName,PhoneNumber,EmailAddress")] Person userList)
+        public ActionResult Edit([Bind(Include = "ID,UserID,ExpertID,FirstName,LastName,PhoneNumber,EmailAddress")] Person userList)
         {
             if (ModelState.IsValid)
             {

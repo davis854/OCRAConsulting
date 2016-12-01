@@ -1,4 +1,4 @@
-﻿@model ORCA2.Models.UserList
+﻿@model ORCA2.Models.Person
 
 @{
     ViewBag.Title = "Details";
@@ -10,6 +10,12 @@
     <h4>UserList</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ExpertID)
         </dt>
