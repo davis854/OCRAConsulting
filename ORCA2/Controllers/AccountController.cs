@@ -15,11 +15,13 @@ namespace ORCA2.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        //25555
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        
         public AccountController()
         {
+            
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
