@@ -19,6 +19,22 @@ namespace ORCA2.Controllers
         {
             return View(db.Messages.ToList());
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        /*public ActionResult Index(string orderByName) 
+        /{
+            ViewBag.SortName = String.IsNullOrEmpty(orderByName) ? "descendingName" : "";
+
+            var users = from Person in db.Users select Person;
+
+            switch (orderByName)
+            {
+                case "descendingName":
+                    users = users.OrderBy(Person => Person.Id);
+                    break;
+            }
+            return View(users.ToList());
+        }*/
 
         // GET: Messages/Details/5
         public ActionResult Details(int? id)
@@ -123,5 +139,6 @@ namespace ORCA2.Controllers
             }
             base.Dispose(disposing);
         }
+        
     }
 }

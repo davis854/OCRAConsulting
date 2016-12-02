@@ -59,7 +59,7 @@ namespace ORCA2.Controllers
         }
 
         // GET: Replies/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Reply(int? id)
         {
             if (id == null)
             {
@@ -78,7 +78,7 @@ namespace ORCA2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReplyID,MessageID,UserID,Content,Timestamp")] Reply reply)
+        public ActionResult Reply([Bind(Include = "ReplyID,MessageID,UserID,Content,Timestamp")] Reply reply)
         {
             if (ModelState.IsValid)
             {
