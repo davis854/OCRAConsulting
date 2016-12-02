@@ -9,7 +9,7 @@ namespace ORCA2.Models
     public class Reply
     {
         [Key]
-        public int ReplyID { get; set; }
+        public int ReplyID { get; set; }//jjjj
         public int MessageID { get; set; }
       
         public int UserID { get; set; }
