@@ -7,17 +7,24 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ORCA2.Models;
-
+using Microsoft.AspNet.Identity;
 namespace ORCA2.Controllers
 {
     public class PersonController : Controller
     {
+
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: UserLists
-        public ActionResult Index()
+        public async System.Threading.Tasks.Task<ActionResult> Index(string stringName)
         {
-            return View(db.UserLists.ToList());
+            var user = from s in db.UserLists
+                       select s;
+            if (!string.IsNullOrEmpty(stringName))
+            {
+                user = user.Where(s => s.EmailAddress.Contains(stringName));
+            }
+            return View(await user.ToListAsync());
         }
 
         // GET: UserLists/Details/5
@@ -70,6 +77,7 @@ namespace ORCA2.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(userList);
         }
 
@@ -78,13 +86,17 @@ namespace ORCA2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ExpertID,FirstName,LastName,PhoneNumber,EmailAddress")] Person userList)
+        public ActionResult Edit([Bind(Include = "ID,EmailAddress,FirstName,LastName,PhoneNumber")] Person userList)
         {
+
             if (ModelState.IsValid)
             {
+                var manager = new UserManager<ApplicationUser>(new Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+                //var temp = (from d in db.Users where d.Email == userList.EmailAddress);
                 db.Entry(userList).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { stringName = currentUser.Email }); 
             }
             return View(userList);
         }

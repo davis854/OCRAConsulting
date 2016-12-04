@@ -7,16 +7,16 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Send New Message", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User1ID)
+        <!--<th>
+            Html.DisplayNameFor(model => model.User1ID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User2ID)
-        </th>
+            Html.DisplayNameFor(model => model.User2ID)
+        </th>-->
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -28,12 +28,12 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User1ID)
+        <!--<td>
+            Html.DisplayFor(modelItem => item.User1ID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User2ID)
-        </td>
+            Html.DisplayFor(modelItem => item.User2ID)
+        </td>-->
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
@@ -41,7 +41,7 @@
             @Html.DisplayFor(modelItem => item.InitialMessage)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MessageID }) |
+            @Html.ActionLink("Reply", "Reply", new { id=item.MessageID }) |
             @Html.ActionLink("Details", "Details", new { id=item.MessageID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.MessageID })
         </td>

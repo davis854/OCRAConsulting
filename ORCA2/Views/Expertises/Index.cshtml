@@ -4,11 +4,18 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Expert List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    @using (Html.BeginForm("Index", "Expertises", FormMethod.Get))
+    {
+        <p>
+            Department: @Html.DropDownList("department", "All")
+            Field: @Html.TextBox("SearchString") <br />
+            <input type="submit" value="Filter" />
+        </p>
+    }
+
 <table class="table">
     <tr>
         <th>
@@ -17,22 +24,52 @@
         <th>
             @Html.DisplayNameFor(model => model.Field)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Validated)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Department)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Field)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ExpertiseID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ExpertiseID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ExpertiseID })
-        </td>
+        @if(item.Validated || User.Identity.Name.Equals("admin@orca.com") || User.Identity.Name.Equals(item.LinkedEmail))
+        {
+            @Html.HiddenFor(modelItem => item.LinkedEmail)
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Field)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactEmail)
+            </td>
+            if (User.Identity.Name.Equals("admin@orca.com") || User.Identity.Name.Equals(item.LinkedEmail))
+            {
+            <td>
+                @Html.DisplayFor(modelItem => item.Validated)
+            </td>
+            }
+            else
+            {
+                <td>
+
+                </td>
+            }
+            <td>
+                @Html.ActionLink("Details", "Details", new { id=item.ExpertiseID }) |
+                @if (User.Identity.Name.Equals(item.LinkedEmail) || User.Identity.Name.Equals("admin@orca.com"))
+                {
+                @Html.ActionLink("Delete", "Delete", new { id = item.ExpertiseID })
+                } |
+                @if (!item.Validated && User.Identity.Name.Equals("admin@orca.com"))
+                {
+                    @Html.ActionLink("Validate", "Edit", new { id = item.ExpertiseID })
+                }
+            </td>
+        }
     </tr>
 }
 

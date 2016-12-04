@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Validate?</h2>
 
 
 @using (Html.BeginForm())
@@ -32,6 +32,46 @@
                 @Html.ValidationMessageFor(model => model.Field, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        @if (User.Identity.Name.Equals("admin@orca.com"))
+        {
+        <div class="form-group">
+            @Html.LabelFor(model => model.LinkedEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LinkedEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LinkedEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.ContactEmail)
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ContactEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContactEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @if (User.Identity.Name.Equals("admin@orca.com"))
+        {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Validated, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Validated)
+                    @Html.ValidationMessageFor(model => model.Validated, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.Validated)
+        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

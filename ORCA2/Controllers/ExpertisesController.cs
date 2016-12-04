@@ -15,9 +15,31 @@ namespace ORCA2.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Expertises
-        public ActionResult Index()
+        public ActionResult Index(string department, string searchString)
         {
-            return View(db.Expertises.ToList());
+            var DepLst = new List<string>();
+
+            var GenreQry = from d in db.Expertises
+                           orderby d.Department
+                           select d.Department;
+
+            DepLst.AddRange(GenreQry.Distinct());
+            ViewBag.department = new SelectList(DepLst);
+
+            var expertiseList = from m in db.Expertises
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                expertiseList = expertiseList.Where(s => s.Field.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(department))
+            {
+                expertiseList = expertiseList.Where(x => x.Department == department);
+            }
+
+            return View(expertiseList);
         }
 
         // GET: Expertises/Details/5
@@ -46,13 +68,15 @@ namespace ORCA2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ExpertiseID,Department,Field")] Expertise expertise)
+        public ActionResult Create([Bind(Include = "ExpertiseID,ContactEmail,Department,Field,Validated")] Expertise expertise)
         {
             if (ModelState.IsValid)
             {
+                expertise.LinkedEmail = User.Identity.Name;
+                expertise.Validated = false;
                 db.Expertises.Add(expertise);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Manage");
             }
 
             return View(expertise);
@@ -78,10 +102,11 @@ namespace ORCA2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ExpertiseID,Department,Field")] Expertise expertise)
+        public ActionResult Edit([Bind(Include = "ExpertiseID, Field, Department, LinkedEmail, ContactEmail, Validated")] Expertise expertise)
         {
             if (ModelState.IsValid)
             {
+                //expertise.Validated = true;
                 db.Entry(expertise).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

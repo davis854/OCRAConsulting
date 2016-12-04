@@ -206,25 +206,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611021618397_InitialCreate.cs" />
-    <Compile Include="Migrations\201611021618397_InitialCreate.Designer.cs">
-      <DependentUpon>201611021618397_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201612040226090_AllAndExpertise.cs" />
+    <Compile Include="Migrations\201612040226090_AllAndExpertise.Designer.cs">
+      <DependentUpon>201612040226090_AllAndExpertise.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611021656559_ExpertTable.cs" />
-    <Compile Include="Migrations\201611021656559_ExpertTable.Designer.cs">
-      <DependentUpon>201611021656559_ExpertTable.cs</DependentUpon>
+    <Compile Include="Migrations\201612040431202_validation.cs" />
+    <Compile Include="Migrations\201612040431202_validation.Designer.cs">
+      <DependentUpon>201612040431202_validation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611021700340_ExpertiseTable.cs" />
-    <Compile Include="Migrations\201611021700340_ExpertiseTable.Designer.cs">
-      <DependentUpon>201611021700340_ExpertiseTable.cs</DependentUpon>
+    <Compile Include="Migrations\201612040645420_smallchange.cs" />
+    <Compile Include="Migrations\201612040645420_smallchange.Designer.cs">
+      <DependentUpon>201612040645420_smallchange.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611021708067_MessageTable.cs" />
-    <Compile Include="Migrations\201611021708067_MessageTable.Designer.cs">
-      <DependentUpon>201611021708067_MessageTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611021720496_RepliesTable.cs" />
-    <Compile Include="Migrations\201611021720496_RepliesTable.Designer.cs">
-      <DependentUpon>201611021720496_RepliesTable.cs</DependentUpon>
+    <Compile Include="Migrations\201612040704102_notrequired.cs" />
+    <Compile Include="Migrations\201612040704102_notrequired.Designer.cs">
+      <DependentUpon>201612040704102_notrequired.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -298,11 +294,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\UserLists\Create.cshtml" />
-    <Content Include="Views\UserLists\Delete.cshtml" />
-    <Content Include="Views\UserLists\Details.cshtml" />
-    <Content Include="Views\UserLists\Edit.cshtml" />
-    <Content Include="Views\UserLists\Index.cshtml" />
+    <Content Include="Views\Person\Create.cshtml" />
+    <Content Include="Views\Person\Delete.cshtml" />
+    <Content Include="Views\Person\Details.cshtml" />
+    <Content Include="Views\Person\Edit.cshtml" />
+    <Content Include="Views\Person\Index.cshtml" />
     <Content Include="Views\Experts\Create.cshtml" />
     <Content Include="Views\Experts\Delete.cshtml" />
     <Content Include="Views\Experts\Details.cshtml" />
@@ -311,7 +307,6 @@
     <Content Include="Views\Expertises\Create.cshtml" />
     <Content Include="Views\Expertises\Delete.cshtml" />
     <Content Include="Views\Expertises\Details.cshtml" />
-    <Content Include="Views\Expertises\Edit.cshtml" />
     <Content Include="Views\Expertises\Index.cshtml" />
     <Content Include="Views\Messages\Create.cshtml" />
     <Content Include="Views\Messages\Delete.cshtml" />
@@ -323,6 +318,7 @@
     <Content Include="Views\Replies\Details.cshtml" />
     <Content Include="Views\Replies\Edit.cshtml" />
     <Content Include="Views\Replies\Index.cshtml" />
+    <Content Include="Views\Expertises\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -336,20 +332,17 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611021618397_InitialCreate.resx">
-      <DependentUpon>201611021618397_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612040226090_AllAndExpertise.resx">
+      <DependentUpon>201612040226090_AllAndExpertise.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611021656559_ExpertTable.resx">
-      <DependentUpon>201611021656559_ExpertTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612040431202_validation.resx">
+      <DependentUpon>201612040431202_validation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611021700340_ExpertiseTable.resx">
-      <DependentUpon>201611021700340_ExpertiseTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612040645420_smallchange.resx">
+      <DependentUpon>201612040645420_smallchange.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611021708067_MessageTable.resx">
-      <DependentUpon>201611021708067_MessageTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611021720496_RepliesTable.resx">
-      <DependentUpon>201611021720496_RepliesTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612040704102_notrequired.resx">
+      <DependentUpon>201612040704102_notrequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

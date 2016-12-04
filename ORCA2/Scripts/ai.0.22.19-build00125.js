@@ -1141,9 +1141,9 @@ var AI;
             this.userAccountAcquisitionDate = "ai.user.accountAcquisitionDate";
             this.userAccountId = "ai.user.accountId";
             this.userAgent = "ai.user.userAgent";
-            this.userId = "ai.user.id";
+            this.ID = "ai.user.id";
             this.userStoreRegion = "ai.user.storeRegion";
-            this.userAuthUserId = "ai.user.authUserId";
+            this.userAuthID = "ai.user.authID";
             this.userAnonymousUserAcquisitionDate = "ai.user.anonUserAcquisitionDate";
             this.userAuthenticatedUserAcquisitionDate = "ai.user.authUserAcquisitionDate";
             this.sampleRate = "ai.sample.sampleRate";
@@ -1331,8 +1331,8 @@ var Microsoft;
             SamplingScoreGenerator.prototype.getSamplingScore = function (envelope) {
                 var tagKeys = new AI.ContextTagKeys();
                 var score = 0;
-                if (envelope.tags[tagKeys.userId]) {
-                    score = this.hashCodeGeneragor.getHashCodeScore(envelope.tags[tagKeys.userId]);
+                if (envelope.tags[tagKeys.ID]) {
+                    score = this.hashCodeGeneragor.getHashCodeScore(envelope.tags[tagKeys.ID]);
                 }
                 else if (envelope.tags[tagKeys.operationId]) {
                     score = this.hashCodeGeneragor.getHashCodeScore(envelope.tags[tagKeys.operationId]);
@@ -1585,14 +1585,14 @@ var Microsoft;
                         }
                     }
                 }
-                User.prototype.setAuthenticatedUserContext = function (authenticatedUserId, accountId) {
-                    var isInvalidInput = !this.validateUserInput(authenticatedUserId) || (accountId && !this.validateUserInput(accountId));
+                User.prototype.setAuthenticatedUserContext = function (authenticatedID, accountId) {
+                    var isInvalidInput = !this.validateUserInput(authenticatedID) || (accountId && !this.validateUserInput(accountId));
                     if (isInvalidInput) {
                         ApplicationInsights._InternalLogging.throwInternalUserActionable(ApplicationInsights.LoggingSeverity.WARNING, new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.USRACT_SetAuthContextFailedAccountName, "Setting auth user context failed. " +
                             "User auth/account id should be of type string, and not contain commas, semi-colons, equal signs, spaces, or vertical-bars."));
                         return;
                     }
-                    this.authenticatedId = authenticatedUserId;
+                    this.authenticatedId = authenticatedID;
                     var authCookie = this.authenticatedId;
                     if (accountId) {
                         this.accountId = accountId;
@@ -2989,10 +2989,10 @@ var Microsoft;
                         envelope.tags[tagKeys.userAgent] = userContext.agent;
                     }
                     if (typeof userContext.id === "string") {
-                        envelope.tags[tagKeys.userId] = userContext.id;
+                        envelope.tags[tagKeys.ID] = userContext.id;
                     }
                     if (typeof userContext.authenticatedId === "string") {
-                        envelope.tags[tagKeys.userAuthUserId] = userContext.authenticatedId;
+                        envelope.tags[tagKeys.userAuthID] = userContext.authenticatedId;
                     }
                     if (typeof userContext.storeRegion === "string") {
                         envelope.tags[tagKeys.userStoreRegion] = userContext.storeRegion;
@@ -3558,9 +3558,9 @@ var Microsoft;
                     ApplicationInsights._InternalLogging.throwInternalNonUserActionable(ApplicationInsights.LoggingSeverity.CRITICAL, new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.NONUSRACT_FlushFailed, "flush failed, telemetry will not be collected: " + ApplicationInsights.Util.getExceptionName(e), { exception: ApplicationInsights.Util.dump(e) }));
                 }
             };
-            AppInsights.prototype.setAuthenticatedUserContext = function (authenticatedUserId, accountId) {
+            AppInsights.prototype.setAuthenticatedUserContext = function (authenticatedID, accountId) {
                 try {
-                    this.context.user.setAuthenticatedUserContext(authenticatedUserId, accountId);
+                    this.context.user.setAuthenticatedUserContext(authenticatedID, accountId);
                 }
                 catch (e) {
                     ApplicationInsights._InternalLogging.throwInternalUserActionable(ApplicationInsights.LoggingSeverity.WARNING, new ApplicationInsights._InternalLogMessage(ApplicationInsights._InternalMessageId.USRACT_SetAuthContextFailed, "Setting auth user context failed. " + ApplicationInsights.Util.getExceptionName(e), { exception: ApplicationInsights.Util.dump(e) }));
